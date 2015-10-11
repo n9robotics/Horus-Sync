@@ -8,6 +8,9 @@
 // PROYECTO:
 // Horus-Sync (sincronización hemisférica) 
 //
+// LICENCIA:
+// Open Source
+//
 // COMPONENTES:
 //
 // 1 - Placa Arduino (Mega)
@@ -26,13 +29,21 @@
 //
 // TEORIA:
 // Si el oído(ojo) izquierdo recibe sonidos(luz) con una frecuencia de 40 Hz y el oído(ojo) derecho de 50 Hz, el pulso binaural resultante será de 10 Hz
-
+//
 // En neurociencia, hay cinco frecuencias de ondas cerebrales distintas
 // Gamma 40 -> ? hz    - introspección
 // Beta 14 -> 40 hz    - estado normal
 // Alfa 7.5 -> 14 hz   - relajacion profunda
 // Theta 4 -> 7.5 hz   - meditacion  y sueño ligero
 // Delta 0.5 -> 4 hz   - sueño profundo y meditacion tracendental
+//
+// ALERTA:
+// La epilepsia fotosensitiva es un tipo de epilepsia en la cual 
+// los ataques son originados por estímulos visuales 
+//
+// AVISO LEGAL:
+// Autor no asume ninguna responsabilidad por los daños y perjuicios resultantes o 
+// que tengan conexión con el empleo de este proyecto
 //
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -128,9 +139,9 @@ int indice_max  = 2;
 
 //numero de opccion
 String Menu_Numero[] = {  
-  "1", 
-  "2",
-  "3"
+  "1", //RGB 
+  "2", //HZ
+  "3"  //Base 
 };
 
 //nombre de las opciones
@@ -150,8 +161,8 @@ int Opccion_Seleccion[] = {
 //topes de sub opciones
 int Opccion_Max[] = {  
   7, //RGB
-  40,//HZ
-  7  //Base
+  50,//HZ
+  13 //Base
 };
  
 String Opccion_A[] = {  
@@ -206,7 +217,17 @@ String Opccion_B[] = {
   "37 Beta ", 
   "38 Beta ", 
   "39 Beta ", 
-  "40 Gamma" 
+  "40 Gamma", 
+  "41 Gamma", 
+  "42 Gamma", 
+  "43 Gamma", 
+  "44 Gamma", 
+  "45 Gamma", 
+  "46 Gamma", 
+  "47 Gamma", 
+  "48 Gamma", 
+  "49 Gamma", 
+  "50 Gamma" 
 };
 
 String Opccion_C[] = {  
@@ -217,7 +238,13 @@ String Opccion_C[] = {
   "15 HZ   ",//4
   "20 HZ   ",//5 
   "25 HZ   ",//6 
-  "30 HZ   " //7 
+  "30 HZ   ",//7 
+  "35 HZ   ",//8 
+  "40 HZ   ",//9 
+  "45 HZ   ",//10 
+  "50 HZ   ",//11 
+  "55 HZ   ",//12 
+  "60 HZ   " //13 
 };
 
 //>>>>>>>>>>>>>>>>>>>>>>>>
@@ -325,7 +352,11 @@ void Menu_Pad(){
                 if(Opccion_Seleccion[indice_menu]>Opccion_Max[indice_menu])
                 {
                    Opccion_Seleccion[indice_menu]=0;
-                } 
+                   
+                   if(indice_menu==2){
+                     Reset_Leds_Timers();
+                   }
+               } 
               } 
               
         }else{
@@ -341,6 +372,11 @@ void Menu_Pad(){
                 if(Opccion_Seleccion[indice_menu]<0)
                 {
                    Opccion_Seleccion[indice_menu]=Opccion_Max[indice_menu];
+
+                   if(indice_menu==2){
+                     Reset_Leds_Timers();
+                   }
+
                 } 
               } 
               
@@ -494,6 +530,30 @@ void Leds_HZ(){
 
         case 7://30 HZ
           Frecuencia_Base = 30;
+        break;
+
+        case 8://35 HZ
+          Frecuencia_Base = 35;
+        break;
+        
+        case 9://40 HZ
+          Frecuencia_Base = 40;
+        break;
+        
+        case 10://45 HZ
+          Frecuencia_Base = 45;
+        break;
+        
+        case 11://50 HZ
+          Frecuencia_Base = 50;
+        break;
+        
+        case 12://55 HZ
+          Frecuencia_Base = 55;
+        break;
+
+        case 13://60 HZ
+          Frecuencia_Base = 60;
         break;
      }    
        
